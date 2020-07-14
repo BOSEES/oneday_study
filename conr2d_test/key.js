@@ -57,6 +57,12 @@ function MnemonicToPrivateKey(mnemonic){
     return Buffer.from(privateKey.toString(),"hex");
 }
 
+function privateKeyToAddress(privateKey){
+  const publicKey = createPublicKey(privatekey);
+  const address = createAddress(publicKey);
+  return toChecksumAddress;
+}
+
 export default{
     createAddress,
     createPrivateKey,

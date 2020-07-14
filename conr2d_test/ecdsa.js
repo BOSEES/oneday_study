@@ -22,3 +22,8 @@ const recoveredKey = recover("hello", signature);
 
 console.log(publicKey.toString("hex"));
 console.log(recoveredKey.toString("hex"));
+
+export default{
+    sign,
+    recover,
+}
