@@ -69,5 +69,5 @@ export default{
     createPublicKey,
     createMnemonic,
     MnemonicToPrivateKey,
-
+    privateKeyToAddress
 }

@@ -27,8 +27,6 @@ app.post("/create_key",function(req, res){
         privateKey: privateKey.toString(),
         address:checksomAddress,
     });
-    
-    
 });
 
 app.post("/current_address", function(req, res){
@@ -53,21 +51,27 @@ app.post("/import_key",function(req, res){
     });
 });
 
-// app.post("/sign", function(req, res){
-//     const message = ecdsa.sign(message);
-//     const signature = ecdsa.signature;
-//     res.json({
-//         message: message.toString(),
-//         signature: signature.toString()
-//     });
-// });
+app.post("/sign", function(req, res){
+    const signature = ecdsa.sign(req.body.message,privateKey);
+    res.json({
+        message:req.body.message,
+        signature:Buffer.from.(signature.signature).toString("hex"),
+        recid:signature.recid,
+    });
+});
 
-// app.post("/recover", function(req, res){
-//     const recoverKey = ecdsa.recover(signature);
-//     res.json({
+app.post("/recover", function(req, res){
+    const signature = {
+        signature: Buffer.from(req.body.signature.signature, "hex"),
+        recid:req.body.signature.recid,
+    };
+    const publicKey = ecdsa.recover(req.body.message, signature);
+    const address = key.createAddress(publicKey);
+    res.json({
+        publicKey:
         
-//     });
-// });
+    })
+});
 
 app.listen(port,host, function(){
     console.log("가즈아",port);
